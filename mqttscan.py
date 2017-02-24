@@ -4,12 +4,15 @@ import argparse # for args and shit
 import paho.mqtt.client as mqtt
 import _thread
 
+list=set([])
+
 def on_connect(client, userdata, flags, rc):
 	print("Connected with result code "+str(rc))
 	client.subscribe("#")
 
 def on_message(client, userdata, msg):
 	print(msg.topic+" "+str(msg.payload))
+	list.add(msg.topic)
 
 def recordTill(name):
 	time.sleep(10)
@@ -31,6 +34,9 @@ def function1(keyfile):
 		_thread.start_new_thread(recordTill,("Tread1",))
 		client.loop_forever()	
 	file.close()
+	print ("Commandos Detectados")
+	for command in list:
+		print (command)
 
 def main():
 	parser = argparse.ArgumentParser("mqtt Scanner")
