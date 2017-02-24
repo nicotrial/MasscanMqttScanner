@@ -4,7 +4,6 @@ import argparse # for args and shit
 import paho.mqtt.client as mqtt
 import _thread
 
-list=set([])
 channel=""
 
 def on_connect(client, userdata, flags, rc):
@@ -13,7 +12,6 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
 	print(msg.topic+" "+str(msg.payload))
-	list.add(msg.topic)
 
 
 def function1(ip,chan):
