@@ -4,6 +4,25 @@ import argparse # for args and shit
 import paho.mqtt.client as mqtt
 import _thread
 
+
+banner = u'''
+                                       ░▒░          ░▒▒░
+      ░░                              ░▓█▒         ░▓█▓░
+      ▒▓▒░     ▒█▒         ░▒▒░       ▒██▒         ▒▓▓▒
+     ░▓█▓▒▒░  ░███░      ░▓███▒░▒░    ░▓█▓░        ▒▒▒▒
+     ▒▓▓▒░▓▓░░▓▓▓█▓░   ░▓███▓▒▒▒▓▓░ ░▒▒▓██▓▒▒▒▒░   ▒▒▒▒
+     ▒▒▒▒ ░▓▓▓▓░░▓█▒  ░▓██▓░  ░░░▓▓░░▒▒▓████▒▒▒░   ▒▒▒▒░░  ░▒▒▒▒░
+     ▒▓▓▒  ░▓█▒  ▒█▓░ ▒▓▓▒       ░▓▒   ░▓███    ░▒▒███▓▒▒▒▒▒▒▒▒▒░
+    ░▓█▓░   ░▒░  ▒▓▓▒ ▒▓▓▓░      ░▓▒     ░██    ░▒▒▓██▓░░▒▒░
+    ▒██▒         ░▒▓▓░░▓████▓▒▒▓▓▓▓░      ██▒       ▒█▒
+    ▒██▒          ▒▓▓▒ ░▒▓██▓▒▒██▒░       ▒██       ▒█▓
+    ▒▓▓▒          ▒▒▒▒        ░▓▒          ▒▒       ░██
+    ▒▒░░          ▒▓▓▒    ░▒▒▒██▒                    ▓█░
+    ░░            ░▓▓░    ▒▓▒▒██░  ░▒░               ░▒░
+                   ░░     ░░  ▒▓▒▒▒▓▓░     SCANNER!!
+                              ░▒▒▒▒▒░
+'''
+
 list=set([])
 
 def on_connect(client, userdata, flags, rc):
@@ -47,6 +66,7 @@ def main():
 		function1(args.i)	
 	
 if __name__ == "__main__":
+	print(banner)
 	client = mqtt.Client()
 	client.on_connect = on_connect
 	client.on_message = on_message	

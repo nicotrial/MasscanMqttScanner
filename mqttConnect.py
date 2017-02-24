@@ -6,6 +6,24 @@ import paho.mqtt.publish as publish
 import _thread
 
 channel=""
+banner = u'''
+                                       ░▒░          ░▒▒░
+      ░░                              ░▓█▒         ░▓█▓░
+      ▒▓▒░     ▒█▒         ░▒▒░       ▒██▒         ▒▓▓▒
+     ░▓█▓▒▒░  ░███░      ░▓███▒░▒░    ░▓█▓░        ▒▒▒▒
+     ▒▓▓▒░▓▓░░▓▓▓█▓░   ░▓███▓▒▒▒▓▓░ ░▒▒▓██▓▒▒▒▒░   ▒▒▒▒
+     ▒▒▒▒ ░▓▓▓▓░░▓█▒  ░▓██▓░  ░░░▓▓░░▒▒▓████▒▒▒░   ▒▒▒▒░░  ░▒▒▒▒░
+     ▒▓▓▒  ░▓█▒  ▒█▓░ ▒▓▓▒       ░▓▒   ░▓███    ░▒▒███▓▒▒▒▒▒▒▒▒▒░
+    ░▓█▓░   ░▒░  ▒▓▓▒ ▒▓▓▓░      ░▓▒     ░██    ░▒▒▓██▓░░▒▒░
+    ▒██▒         ░▒▓▓░░▓████▓▒▒▓▓▓▓░      ██▒       ▒█▒
+    ▒██▒          ▒▓▓▒ ░▒▓██▓▒▒██▒░       ▒██       ▒█▓
+    ▒▓▓▒          ▒▒▒▒        ░▓▒          ▒▒       ░██
+    ▒▒░░          ▒▓▓▒    ░▒▒▒██▒                    ▓█░
+    ░░            ░▓▓░    ▒▓▒▒██░  ░▒░               ░▒░
+                   ░░     ░░  ▒▓▒▒▒▓▓░     CONNECT!!
+                              ░▒▒▒▒▒░
+'''
+
 
 def on_connect(client, userdata, flags, rc):
 	print("Connected with result code "+str(rc))
@@ -46,6 +64,7 @@ def main():
 		print ("Get outtahere u filthy animal!!")	
 	
 if __name__ == "__main__":
+	print(banner)
 	client = mqtt.Client()
 	client.on_connect = on_connect
 	client.on_message = on_message	
