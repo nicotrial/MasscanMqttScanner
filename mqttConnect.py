@@ -2,6 +2,7 @@ import time
 import os
 import argparse # for args and shit
 import paho.mqtt.client as mqtt
+import paho.mqtt.publish as publish
 import _thread
 
 channel=""
@@ -21,21 +22,24 @@ def function1(ip,chan):
 	client.connect(ip, 1883, 60)
 	client.loop_forever()	
 
-def function2(ip,msg):
-	print ("send Message TODO: "+ msg)
+def function2(ip,chan,msg):
+	print ("send Message: AT= " + chan +"Payload= "+ msg)
+	publish.single(chan, msg, hostname=ip)
 
 def main():
 	parser = argparse.ArgumentParser("mqtt Scanner")
 	parser.add_argument("-i", help="IP to Scan")
 	parser.add_argument("-ch", help="Channel to Sub")
 	parser.add_argument("-s", help="Send to mqtt")
+
 	    	
 	args = parser.parse_args()
 	if args.i:
 		if args.ch:
-			function1(args.i,args.ch)
-		elif args.s:
-			function2(args.i,args.s)
+			if args.s:
+				function2(args.i,args.ch,args.s)
+			else:
+				function1(args.i,args.ch)
 		else:
 			print ("No Channel selected")	
 	else:
