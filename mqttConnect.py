@@ -4,25 +4,29 @@ import argparse # for args and shit
 import paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 import _thread
+from random import randint
 
 channel=""
-banner = u'''
-                                       ░▒░          ░▒▒░
-      ░░                              ░▓█▒         ░▓█▓░
-      ▒▓▒░     ▒█▒         ░▒▒░       ▒██▒         ▒▓▓▒
-     ░▓█▓▒▒░  ░███░      ░▓███▒░▒░    ░▓█▓░        ▒▒▒▒
-     ▒▓▓▒░▓▓░░▓▓▓█▓░   ░▓███▓▒▒▒▓▓░ ░▒▒▓██▓▒▒▒▒░   ▒▒▒▒
-     ▒▒▒▒ ░▓▓▓▓░░▓█▒  ░▓██▓░  ░░░▓▓░░▒▒▓████▒▒▒░   ▒▒▒▒░░  ░▒▒▒▒░
-     ▒▓▓▒  ░▓█▒  ▒█▓░ ▒▓▓▒       ░▓▒   ░▓███    ░▒▒███▓▒▒▒▒▒▒▒▒▒░
-    ░▓█▓░   ░▒░  ▒▓▓▒ ▒▓▓▓░      ░▓▒     ░██    ░▒▒▓██▓░░▒▒░
-    ▒██▒         ░▒▓▓░░▓████▓▒▒▓▓▓▓░      ██▒       ▒█▒
-    ▒██▒          ▒▓▓▒ ░▒▓██▓▒▒██▒░       ▒██       ▒█▓
-    ▒▓▓▒          ▒▒▒▒        ░▓▒          ▒▒       ░██
-    ▒▒░░          ▒▓▓▒    ░▒▒▒██▒                    ▓█░
-    ░░            ░▓▓░    ▒▓▒▒██░  ░▒░               ░▒░
-                   ░░     ░░  ▒▓▒▒▒▓▓░     CONNECT!!
-                              ░▒▒▒▒▒░
-'''
+color = "\033["+str(randint(40,49))+"m"
+banner = u''''''+color+'''
+                                                                     
+                                       ░▒░          ░▒▒░             
+      ░░                              ░▓█▒         ░▓█▓░             
+      ▒▓▒░     ▒█▒         ░▒▒░       ▒██▒         ▒▓▓▒              
+     ░▓█▓▒▒░  ░███░      ░▓███▒░▒░    ░▓█▓░        ▒▒▒▒              
+     ▒▓▓▒░▓▓░░▓▓▓█▓░   ░▓███▓▒▒▒▓▓░ ░▒▒▓██▓▒▒▒▒░   ▒▒▒▒              
+     ▒▒▒▒ ░▓▓▓▓░░▓█▒  ░▓██▓░  ░░░▓▓░░▒▒▓████▒▒▒░   ▒▒▒▒░░  ░▒▒▒▒░    
+     ▒▓▓▒  ░▓█▒  ▒█▓░ ▒▓▓▒       ░▓▒   ░▓███    ░▒▒███▓▒▒▒▒▒▒▒▒▒░    
+    ░▓█▓░   ░▒░  ▒▓▓▒ ▒▓▓▓░      ░▓▒     ░██    ░▒▒▓██▓░░▒▒░         
+    ▒██▒         ░▒▓▓░░▓████▓▒▒▓▓▓▓░      ██▒       ▒█▒              
+    ▒██▒          ▒▓▓▒ ░▒▓██▓▒▒██▒░       ▒██       ▒█▓              
+    ▒▓▓▒          ▒▒▒▒        ░▓▒          ▒▒       ░██              
+    ▒▒░░          ▒▓▓▒    ░▒▒▒██▒                    ▓█░             
+    ░░            ░▓▓░    ▒▓▒▒██░  ░▒░               ░▒░             
+                   ░░     ░░  ▒▓▒▒▒▓▓░     \033[93mConnect!!\033[0m'''+color+'''                 
+                              ░▒▒▒▒▒░       \033[93mBy:NiCoTrIaL\033[0m'''+color+'''             
+                                                                     
+\033[0m'''
 
 
 def on_connect(client, userdata, flags, rc):
@@ -45,7 +49,7 @@ def function2(ip,chan,msg):
 	publish.single(chan, msg, hostname=ip)
 
 def main():
-	parser = argparse.ArgumentParser("mqtt Scanner")
+	parser = argparse.ArgumentParser("mqtt Connector")
 	parser.add_argument("-i", help="IP to Scan")
 	parser.add_argument("-ch", help="Channel to Sub")
 	parser.add_argument("-s", help="Send to mqtt")
